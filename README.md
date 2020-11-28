@@ -9,7 +9,5 @@ Feed the hungry snake by collecting the food. In this version of snake you can e
 
 ## Installation
 
-```bash
-    gem install ruby2d
-```
+Follow instructions here to install 
 
