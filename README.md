@@ -9,5 +9,5 @@ Feed the hungry snake by collecting the food. In this version of snake you can e
 
 ## Installation
 
-Follow instructions here to install 
+Follow instructions [here](https://www.ruby2d.com/learn/get-started/)here to install the ruby gem required
 
