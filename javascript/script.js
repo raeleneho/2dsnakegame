@@ -1,5 +1,4 @@
 
-
 // Make the snake
 // specify the initial location of the snake on the canvas by representing the snake as an array of coordinates.  The number of coordinates in the object will be equal to the length of the snake.
 // The yy-coordinate for all parts is always 200. The xx-coordinate is at decrements of 10 to represent different parts of the snake’s body. The very first coordinate represents the snake’s head.
