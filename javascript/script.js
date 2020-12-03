@@ -35,12 +35,17 @@ main();
 
 // main function called repeatedly to keep the game running
 function main() {
-  clearCanvas();
-  drawSnake();
+  setTimeout(function onTick() {
+    clear_board();
+    move_snake();
+    drawSnake();
+    // Call main again
+    main();
+  }, 100)
 }
 
 // draw a border around the canvas
-function clearCanvas() {
+function clear_board() {
   //  Select the colour to fill the drawing
   snakeboard_ctx.fillStyle = board_background;
   //  Select the colour for the border of the canvas
@@ -78,4 +83,13 @@ function move_snake() {
   // Add the new head to the beginning of snake body
   snake.unshift(head);
   snake.pop();
+}
+
+
+function change_direction(event) {
+  // keycode values of supported browsers' keydown events
+  const LEFT_KEY = 37;
+  const RIGHT_KEY = 39;
+  const UP_KEY = 38;
+  const DOWN_KEY = 40;
 }
