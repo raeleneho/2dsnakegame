@@ -33,8 +33,15 @@ const snakeboard_ctx = gameCanvas.getContext("2d");
 // Start game
 main();
 
+document.addEventListener("keydown", change_direction);
+
 // main function called repeatedly to keep the game running
 function main() {
+
+  if (has_game_ended()) return;
+
+  hanging_direction = false;
+
   setTimeout(function onTick() {
     clear_board();
     move_snake();
@@ -77,6 +84,25 @@ function drawSnakePart(snakePart) {
   snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
 
+// There are two cases in which the game can end:
+
+// The head of the snake collides with its body.
+// The head of the snake collides with the canvas boundary.
+
+function has_game_ended() {
+  for (let i = 4; i < snake.length; i++) {
+    // First, there is a check which looks​ to see if the head has collided with any of the body parts.
+    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+  }
+
+  // If it has not, there is a further check for all of the boundary walls.
+  const hitLeftWall = snake[0].x < 0;
+  const hitRightWall = snake[0].x > snakeboard.width - 10;
+  const hitToptWall = snake[0].y < 0;
+  const hitBottomWall = snake[0].y > snakeboard.height - 10;
+  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+}
+
 function move_snake() {
   // Create the new Snake's head
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
@@ -92,6 +118,11 @@ function change_direction(event) {
   const RIGHT_KEY = 39;
   const UP_KEY = 38;
   const DOWN_KEY = 40;
+
+  // Prevent the snake from reversing
+
+  if (changing_direction) return;
+  changing_direction = true;
 
   const keyPressed = event.code;
   const goingUp = dy === -10;
