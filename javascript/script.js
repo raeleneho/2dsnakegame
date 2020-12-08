@@ -19,6 +19,8 @@ let snake = [
 // True if changing direction
 let changing_direction = false;
 // Horizontal velocitys
+let food_x;
+let food_y;
 let dx = 10;
 // Vertical velocity
 let dy = 0;
@@ -83,6 +85,15 @@ function drawSnakePart(snakePart) {
   // Draw a border around the snake part
   snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
+
+
+function drawFood() {
+  snakeboard_ctx.fillStyle = 'lightgreen';
+  snakeboard_ctx.strokestyle = 'darkgreen';
+  snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
+  snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
+}
+
 
 // There are two cases in which the game can end:
 
