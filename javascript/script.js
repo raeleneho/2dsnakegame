@@ -114,6 +114,24 @@ function has_game_ended() {
   return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
 }
 
+// function that generates a random position for the food
+
+function random_food(min, max) {
+  return Math.round((Math.random() * (max - min) + min) / 10) * 10;
+}
+
+function gen_food() {
+  // Generate a random number the food x-coordinate
+  food_x = random_food(0, snakeboard.width - 10);
+  // Generate a random number for the food y-coordinate
+  food_y = random_food(0, snakeboard.height - 10);
+  // if the new food location is where the snake currently is, generate a new food location
+  snake.forEach(function has_snake_eaten_food(part) {
+    const has_eaten = part.x == food_x && part.y == food_y;
+    if (has_eaten) gen_food();
+  });
+}
+
 function move_snake() {
   // Create the new Snake's head
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
