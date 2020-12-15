@@ -37,6 +37,22 @@ gen_food();
 
 document.addEventListener("keydown", change_direction);
 
+// main function called repeatedly to keep the game running
+function main() {
+
+  if (has_game_ended()) return;
+
+  changing_direction = false;
+  setTimeout(function onTick() {
+    clear_board();
+    drawFood();
+    move_snake();
+    drawSnake();
+    // Repeat
+    main();
+  }, 100)
+}
+
 
 
 // draw a border around the canvas
@@ -156,3 +172,10 @@ function move_snake() {
     snake.pop();
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  pTag = document.querySelector("div");
+  newVal = document.createElement("p");
+  newVal.innerHTML = '';
+  pTag.appendChild(newVal);
+});
